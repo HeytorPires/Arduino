@@ -1,34 +1,26 @@
-// C++ code
-// potenciometro
-int pot = A1;
+// pino do led 
+int led = 13;
 
-// pino LED
-int LED = 13;
+// pino ldr 
+int ldr = A0;
 
-// variável para armazenar o valor lido
-int valor = 0;
-
+//variavel que recebe o valor do ldr
+int entrada = 0;
 void setup()
 {
-  // Inicializa o pino do LED como saída
-  pinMode(LED, OUTPUT);
-
-  // Inicializa a comunicação serial a 9600 bps
   Serial.begin(9600);
+  pinMode(led, OUTPUT);
 }
 
 void loop()
 {
-  // Lê o valor do potenciômetro
-  valor = analogRead(pot);
-
-  // Imprime o valor lido no monitor serial
-  Serial.println(valor);
-
-  // Controla o LED com atraso baseado no valor do potenciômetro
-  digitalWrite(LED, HIGH);
-  //a Velocidade entre um pisque e outro
-  delay(valor); 
-  digitalWrite(LED, LOW);
-  delay(valor); 
+  entrada = analogRead(ldr);
+  Serial.println(entrada);
+  if( entrada < 500) {
+	digitalWrite(led, HIGH);
+  } else {
+	digitalWrite(led, LOW);
+  }
+  delay(1000);
+    
 }
